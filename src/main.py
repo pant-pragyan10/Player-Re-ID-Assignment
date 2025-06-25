@@ -9,9 +9,11 @@ INPUT_VIDEO = os.path.join(ASSETS_DIR, '15sec_input_720p.mp4')
 WEIGHTS_PATH = os.path.join(ASSETS_DIR, 'best.pt')
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '../output')
 OUTPUT_VIDEO = os.path.join(OUTPUT_DIR, 'output1.mp4')
+OUTPUT_GALLERY = os.path.join(OUTPUT_DIR, 'gallery')
 
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
+os.makedirs(OUTPUT_GALLERY, exist_ok=True)
 
 def draw_boxes(frame, tracks):
     for obj in tracks:
@@ -42,9 +44,8 @@ def main():
 
     detector = Detector(WEIGHTS_PATH)
     tracker = Tracker()
-    frame_count = 0
     seen_ids = set()
-    last_ids = set()
+    frame_count = 0
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -54,13 +55,15 @@ def main():
         frame = draw_boxes(frame, tracks)
         out.write(frame)
         frame_count += 1
-        # Save frame if a new ID is detected
-        current_ids = set(obj['track_id'] for obj in tracks)
-        new_ids = current_ids - last_ids
-        for new_id in new_ids:
-            cv2.imwrite(os.path.join(OUTPUT_DIR, f'new_id_{new_id}_frame{frame_count}.jpg'), frame)
-        seen_ids.update(current_ids)
-        last_ids = current_ids
+        # Save a crop for each new ID
+        for obj in tracks:
+            track_id = obj['track_id']
+            if track_id not in seen_ids:
+                x1, y1, x2, y2 = map(int, obj['bbox'])
+                crop = frame[y1:y2, x1:x2]
+                crop_path = os.path.join(OUTPUT_GALLERY, f'id_{track_id}_frame{frame_count}.jpg')
+                cv2.imwrite(crop_path, crop)
+                seen_ids.add(track_id)
         if frame_count % 10 == 0:
             print(f'Processed {frame_count} frames')
         if args.max_frames is not None and frame_count >= args.max_frames:

@@ -14,4 +14,14 @@
 ## Results
 - Successfully assigned consistent IDs to players throughout the 15-second video.
 - Output video (`output/output1.mp4`) shows annotated bounding boxes and IDs.
-- The pipeline is modular and can be extended for longer videos or more advanced re-ID features. 
+- The pipeline is modular and can be extended for longer videos or more advanced re-ID features.
+
+## Possible Extensions & Creative Ideas
+- Use appearance features (color histograms, deep embeddings) for more robust re-identification.
+- Save a gallery of unique player crops for visual inspection.
+- Visualize player trajectories and heatmaps.
+- Provide an interactive notebook or web demo for easier exploration.
+- Output per-frame metrics and ID confidence scores.
+- Move parameters to a config file for modularity.
+
+These enhancements can further boost the project's accuracy, clarity, and creativity. 

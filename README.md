@@ -63,3 +63,16 @@ python player_reid_single_feed/src/main.py
 
 # Output will be in player_reid_single_feed/output/output1.mp4
 ``` 
+
+## Creative Extensions & Future Work
+
+- **Appearance-based Re-ID:** Use color histograms or deep appearance features to improve ID consistency when players re-enter the frame.
+- **Player Gallery:** Save cropped images of each unique player to visually inspect re-identification quality.
+- **Trajectory Visualization:** Plot player movement heatmaps or trajectories on a 2D field.
+- **Interactive Notebook:** Provide a Jupyter notebook for step-by-step demo and visualization.
+- **Metrics & Analytics:** Output per-frame stats and ID assignment confidence scores.
+- **Web Demo:** Build a simple web app (e.g., Streamlit) for interactive video upload and visualization.
+- **Config File:** Move parameters to a YAML/JSON config for easy tuning.
+- **Batch/Parallel Processing:** Speed up processing for longer videos.
+
+These ideas can further improve accuracy, usability, and presentation of the project. 
