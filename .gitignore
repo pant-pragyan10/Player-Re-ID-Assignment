@@ -1,0 +1,9 @@
+# Ignore model weights and large files
+*.pt
+*.mp4
+*.jpg
+
+# Ignore output and cache
+output/
+__pycache__/
+.DS_Store 
