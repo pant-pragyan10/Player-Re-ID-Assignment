@@ -1,5 +1,9 @@
 # Player Re-Identification in Single Video Feed
 
+<img width="1306" alt="image" src="https://github.com/user-attachments/assets/3520bdca-ea06-4e2a-a75e-d416df2ac067" />
+<img width="1306" alt="image" src="https://github.com/user-attachments/assets/72ba79d5-f71f-49e6-adbf-60ccde12617b" />
+
+
 ## Overview
 This project detects and tracks soccer players in a single video feed, assigning consistent IDs even when players leave and re-enter the frame. It uses YOLOv11 for detection and DeepSORT for tracking and re-identification.
 
